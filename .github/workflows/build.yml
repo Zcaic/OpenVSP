@@ -9,8 +9,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.9, 3.12]
-        os: [ windows-2019, ubuntu-22.04, ubuntu-24.04, macos-13, macos-14 ]
+        python-version: [3.12]
+        os: [ windows-2019, ubuntu-24.04 ]
         exclude:
           - os: ubuntu-22.04
             python-version: 3.9
@@ -95,12 +95,12 @@ jobs:
       run:   |
         mkdir build buildlibs artifacts
         cd $GITHUB_WORKSPACE\\buildlibs
-        cmake -DCMAKE_BUILD_TYPE=Release -A x64 ..\\Libraries
+        cmake -DVSP_NO_VSPAERO=false -DVSP_NO_API_WRAPPERS=false -DCMAKE_BUILD_TYPE=Release -A x64 ..\\Libraries
 
         cmake --build . --config Release -j 2
         cd $GITHUB_WORKSPACE\\build
 
-        cmake -DCMAKE_BUILD_TYPE=Release -DVSP_LIBRARY_PATH=$GITHUB_WORKSPACE\\buildlibs -A x64 ..\\src
+        cmake -DVSP_NO_VSPAERO=false -DVSP_NO_API_WRAPPERS=false -DCMAKE_BUILD_TYPE=Release -DVSP_LIBRARY_PATH=$GITHUB_WORKSPACE\\buildlibs -A x64 ..\\src
 
         cmake --build . --target package --config Release -j 2
 

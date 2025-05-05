@@ -164,7 +164,7 @@ IF( NOT VSP_NO_API_WRAPPERS )
     ENDIF( SWIG_FOUND )
 
     IF( SWIG_FOUND )
-        FIND_PACKAGE( PythonLibsNew 3 )
+        FIND_PACKAGE( PythonLibs )
         if ( PYTHONLIBS_FOUND )
             INCLUDE( CreateVirtualEnvironment )
             ADD_SUBDIRECTORY( python_api )

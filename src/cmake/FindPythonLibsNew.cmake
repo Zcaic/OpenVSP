@@ -69,15 +69,15 @@ endif()
 # environment, conda, or GHA activation - if it is, try to use that.
 
 if(NOT DEFINED PYTHON_EXECUTABLE)
-  if(DEFINED ENV{VIRTUAL_ENV})
-    find_program(
-      PYTHON_EXECUTABLE python
-      PATHS "$ENV{VIRTUAL_ENV}" "$ENV{VIRTUAL_ENV}/bin"
-      NO_DEFAULT_PATH)
-  elseif(DEFINED ENV{CONDA_PREFIX})
+  if(DEFINED ENV{CONDA_PREFIX})
     find_program(
       PYTHON_EXECUTABLE python
       PATHS "$ENV{CONDA_PREFIX}" "$ENV{CONDA_PREFIX}/bin"
+      NO_DEFAULT_PATH)
+  elseif(DEFINED ENV{VIRTUAL_ENV})
+    find_program(
+      PYTHON_EXECUTABLE python
+      PATHS "$ENV{VIRTUAL_ENV}" "$ENV{VIRTUAL_ENV}/bin"
       NO_DEFAULT_PATH)
   elseif(DEFINED ENV{pythonLocation})
     find_program(

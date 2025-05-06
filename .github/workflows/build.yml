@@ -38,8 +38,7 @@ jobs:
       with:
         auto-update-conda: true
         python-version: ${{ matrix.python-version }}
-        auto-activate-base: true
-        activate-environment: ""
+        activate-environment: py12
       # with:
       #   python-version: ${{ matrix.python-version }}
 
@@ -47,14 +46,16 @@ jobs:
       if: runner.os == 'Linux'
       shell: bash
       run:   |
+        conda list
         sudo apt-get update
         pip install sphinx swig
         sudo apt-get install libxml2-dev libfltk1.3-dev fluid libjpeg-dev libglm-dev libcminpack-dev libglew-dev doxygen graphviz texlive-latex-base zip pandoc
 
     - name:  Install Windows
       if: runner.os == 'Windows'
-      shell: cmd
+      shell: powershell
       run:   |
+        conda list
         choco install -y swig pandoc
         pip install sphinx
 

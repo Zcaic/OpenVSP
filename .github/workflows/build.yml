@@ -45,6 +45,7 @@ jobs:
       if: runner.os == 'Linux'
       shell: bash
       run:   |
+        conda activate test
         sudo apt-get update
         pip install sphinx swig
         sudo apt-get install libxml2-dev libfltk1.3-dev fluid libjpeg-dev libglm-dev libcminpack-dev libglew-dev doxygen graphviz texlive-latex-base zip pandoc
@@ -53,6 +54,7 @@ jobs:
       if: runner.os == 'Windows'
       shell: cmd
       run:   |
+        conda activate test
         choco install -y swig pandoc
         pip install sphinx
 
